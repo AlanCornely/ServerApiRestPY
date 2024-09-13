@@ -22,6 +22,18 @@ class LeadAPIHandler:
     def get_lead(self, id):
         lead = self.lead_service.get_lead_by_id(id)
         return jsonify(lead.as_dict())
+    
+    
+# Obtém os parâmetros de paginação da URL
+
+#        page = request.args.get('page', 1, type=int)  # Página atual, padrão é 1
+#        per_page = request.args.get('per_page', 25, type=int)  # Resultados por página, padrão é 25
+#
+#        # Chama o serviço para obter os leads paginados
+#        leads_pagination = self.lead_service.get_paginated_leads(page, per_page)
+#        # Renderiza o template com os leads paginados
+#        return jsonify('leads.html', leads=leads_pagination.items, pagination=leads_pagination)
+    
 
     # Cria um novo lead
     def create_lead(self):
@@ -31,7 +43,9 @@ class LeadAPIHandler:
             latitude=data['latitude'],
             longitude=data['longitude'],
             temperature=data['temperature'],
-            interest=data['interest']
+            interest=data['interest'],
+            email=data['email'],
+            telefone=data['telefone']
         )
         return jsonify({"message": "Lead criado com sucesso!"}), 201
 
@@ -44,7 +58,9 @@ class LeadAPIHandler:
             latitude=data['latitude'],
             longitude=data['longitude'],
             temperature=data['temperature'],
-            interest=data['interest']
+            interest=data['interest'],
+            email=data['email'],
+            telefone=data['telefone']
         )
         return jsonify({"message": "Lead atualizado com sucesso!"})
 
